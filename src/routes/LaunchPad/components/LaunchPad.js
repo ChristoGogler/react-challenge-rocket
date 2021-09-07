@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ClassRocket, FunctionalRocket } from "./Rocket";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+
 import "../styles/_launchpad.scss";
 
 export default function LaunchPad() {
@@ -12,9 +14,22 @@ export default function LaunchPad() {
     }, [rerenderCount]);
 
     return (
-        <div className="launchpad">
+        <BrowserRouter>
+            <Switch>
+                <div className="launchpad">
+                    <Route
+                        path="/functionalrocket"
+                        component={FunctionalRocket}
+                    />
+                    <Route path="/classrocket" component={ClassRocket} />
+                    {/* <Route path="/">
+                        <Redirect to="/classrocket" />
+                    </Route> */}
+                </div>
+            </Switch>
+
             {/* <FunctionalRocket /> */}
             <ClassRocket />
-        </div>
+        </BrowserRouter>
     );
 }
